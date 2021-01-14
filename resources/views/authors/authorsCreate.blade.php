@@ -4,7 +4,7 @@
 
 <h4 class="top">Новый автор</h4>
 <div class="form-wrapper">
-    @include('authors.authorsForm')
+    @include('authors.authorsAddForm')
 </div>
     
 @endsection

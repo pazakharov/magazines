@@ -38,7 +38,7 @@
                                 <i class="fa fa-pencil"></i>
                             </a>
 
-                            <form style="display:contents" action="{{ route('authors.destroy',['author'=> $author->id]) }} method=" POST">
+                            <form style="display:contents" action="{{ route('authors.destroy',['author'=> $author->id]) }}" method="POST">
                                 @method('DELETE')
                                 @csrf
                                 <button type="submit" class="btn btn-outline-danger">

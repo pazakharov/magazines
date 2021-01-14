@@ -46,17 +46,6 @@ class AuthorController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Author  $author
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Author $author)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Author  $author
@@ -64,7 +53,7 @@ class AuthorController extends Controller
      */
     public function edit(Author $author)
     {
-        echo 'edit';
+        return view('authors.authorsEdit',compact('author'));
     }
 
     /**
@@ -74,9 +63,11 @@ class AuthorController extends Controller
      * @param  \App\Models\Author  $author
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Author $author)
+    public function update(AuthorCreateRequest $request, Author $author)
     {
-        //
+        $author->update($request->all());
+        return redirect()->route('authors')
+        ->with('success', 'Запись об авторе '.$author->fullName.' обновлена');
     }
 
     /**
@@ -87,6 +78,8 @@ class AuthorController extends Controller
      */
     public function destroy(Author $author)
     {
-        dd($author);
+        $author->delete();
+        return redirect()->route('authors')
+        ->with('success', 'Автор '.$author->fullName.' удален');
     }
 }

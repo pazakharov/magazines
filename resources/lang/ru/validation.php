@@ -163,9 +163,8 @@ return [
 
     'attributes' => [
         'name'                  => 'Имя',
-        'second_name'                  => 'Фамилия',
-        'middle_name'                  => 'Отчество',
-
+        'second_name'           => 'Фамилия',
+        'middle_name'           => 'Отчество',
         'username'              => 'Никнейм',
         'email'                 => 'E-Mail адрес',
         'first_name'            => 'Имя',
