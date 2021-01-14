@@ -64,7 +64,7 @@ class AuthorController extends Controller
      */
     public function edit(Author $author)
     {
-        //
+        echo 'edit';
     }
 
     /**
@@ -87,6 +87,6 @@ class AuthorController extends Controller
      */
     public function destroy(Author $author)
     {
-        //
+        dd($author);
     }
 }
