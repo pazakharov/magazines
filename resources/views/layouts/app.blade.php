@@ -48,7 +48,12 @@
                     </ul>
                 </div>
             @endif
-             @yield('content')
+            @if ($message = Session::get('success'))
+            <div class="alert alert-success">
+               <span>{{ Session::get('success') }} </span> 
+            </div>
+             @endif
+             @yield('content') 
 
             </div>
         </div>

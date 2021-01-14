@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\AuthorCreateRequest;
 use App\Models\Author;
-use App\Repositories\AuthorRepository;
 use Illuminate\Http\Request;
+use App\Repositories\AuthorRepository;
+use App\Http\Requests\AuthorCreateRequest;
+use App\Actions\Authors\AddNewAuthorAction;
 
 class AuthorController extends Controller
 {
@@ -16,9 +17,9 @@ class AuthorController extends Controller
      */
     public function index(Request $request)
     {
-        $orderDir = $request->query('orderDir','asc');
+        $orderDir = $request->query('orderDir', 'asc');
         $authors = AuthorRepository::all($orderDir);
-        return view('authors.authorsIndex', compact('authors','orderDir'));
+        return view('authors.authorsIndex', compact('authors', 'orderDir'));
     }
 
     /**
@@ -39,7 +40,9 @@ class AuthorController extends Controller
      */
     public function store(AuthorCreateRequest $request)
     {
-        //
+        $authorDTO = $request->except('_token');
+        AddNewAuthorAction::run($authorDTO);
+        return redirect('authors')->with('success', 'Успешно добавлен автор: ' . implode(' ', $authorDTO));
     }
 
     /**
