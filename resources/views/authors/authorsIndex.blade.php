@@ -30,39 +30,38 @@
                     <td>{{ $author->middle_name }}</td>
                     <td>{{ $author->second_name }}</td>
                     <td>
-                        
-                            <button type="button" class="btn btn-outline-success" @click="open{{ $author->id }} = true"><i
-                                    class="fa fa-eye"> Журналы</i></button>
-                            <a type="button" class="btn btn-outline-secondary"
-                                href="{{ route('authors.edit', ['author' => $author->id]) }}">
-                                <i class="fa fa-pencil"></i>
-                            </a>
 
-                            <form style="display:contents" action="{{ route('authors.destroy',['author'=> $author->id]) }}" method="POST">
-                                @method('DELETE')
-                                @csrf
-                                <button type="submit" class="btn btn-outline-danger">
-                                    <i class="fa fa-trash-o"></i>
-                                </button>
-                            </form>
-
-
-                            <div x-show="open{{ $author->id }}" class="extend-modal">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content" x-on:click.away="open{{ $author->id }} = false">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">Журналы Автора</h5>
-                                            <button @click="open{{ $author->id }} = false" type="button" class="close"
-                                                aria-label="Close">
-                                                <span style="color:black">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>Журналы</p>
-                                        </div>
+                        <button type="button" class="btn btn-outline-success" @click="open{{ $author->id }} = true"><i
+                                class="fa fa-eye"> Журналы</i>
+                        </button>
+                        <a type="button" class="btn btn-outline-secondary"
+                            href="{{ route('authors.edit', ['author' => $author->id]) }}">
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                        <form style="display:contents" action="{{ route('authors.destroy', ['author' => $author->id]) }}"
+                            method="POST">
+                            @method('DELETE')
+                            @csrf
+                            <button type="submit" class="btn btn-outline-danger">
+                                <i class="fa fa-trash-o"></i>
+                            </button>
+                        </form>
+                        <div x-show="open{{ $author->id }}" class="extend-modal">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content" x-on:click.away="open{{ $author->id }} = false">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Журналы Автора</h5>
+                                        <button @click="open{{ $author->id }} = false" type="button" class="close"
+                                            aria-label="Close">
+                                            <span style="color:black">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Журналы</p>
                                     </div>
                                 </div>
-                            
+                            </div>
+
 
                     </td>
 

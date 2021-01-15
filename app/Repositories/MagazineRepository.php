@@ -1,14 +1,16 @@
 <?php
+
 namespace App\Repositories;
 
+use App\Models\Magazine;
 use App\Repositories\BaseRepository;
-use App\Models\Author;
 use Illuminate\Database\Eloquent\Collection;
 
 /**
- * Класс репозиторий для \App\Models\Author
+ * Класс репозиторий для \App\Models\Magazine
  */
-class AuthorRepository extends BaseRepository{
+class MagazineRepository extends BaseRepository
+{
 
     /**
      * Возвращает коллекцию всех авторов
@@ -16,9 +18,8 @@ class AuthorRepository extends BaseRepository{
      * 
      * @return Collection
      */
-    public static function all(string $orderDir):Collection
+    public static function all(): Collection
     {
-       return Author::orderBy('second_name', $orderDir)->get();
+        return Magazine::with(['authors'])->orderBy('created_at', 'desc')->get();
     }
-
 }

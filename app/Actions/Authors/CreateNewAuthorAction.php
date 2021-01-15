@@ -6,7 +6,7 @@ use App\Models\Author;
 /**
  * Экшн для добавления нового автора
  */
-class AddNewAuthorAction {
+class CreateNewAuthorAction {
     /**
      * @param array $validatedAuthorData
      * 

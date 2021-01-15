@@ -6,6 +6,13 @@ body {
 .form-wrapper{
     margin:10px 300px;
 }
+.form-wrapper-magazine{
+    margin:10px 200px;
+}
+.cover{
+    height: 300px;
+    object-fit: cover;
+}
 
 .extend-modal {
     position: fixed;

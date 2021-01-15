@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\Magazine;
 use Illuminate\Http\Request;
+use App\Repositories\MagazineRepository;
+use App\Http\Requests\MagazineCreateRequest;
+use App\Actions\Magazines\CreateNewMagazineAction;
 
 class MagazineController extends Controller
 {
@@ -14,7 +18,8 @@ class MagazineController extends Controller
      */
     public function index()
     {
-        return view('magazines.magazines');
+        $magazines = MagazineRepository::all();
+        return view('magazines.magazines', compact('magazines'));
     }
 
     /**
@@ -24,7 +29,7 @@ class MagazineController extends Controller
      */
     public function create()
     {
-        //
+        return view('magazines.magazinesCreate');
     }
 
     /**
@@ -33,9 +38,15 @@ class MagazineController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MagazineCreateRequest $request)
     {
-        //
+        $magazineDTO = $request->all();
+        try {
+            CreateNewMagazineAction::run($magazineDTO);
+        } catch (Exception $exception) {
+            return redirect('magazines')->with('success', 'Ошибки! добавления журнала' . $magazineDTO['title'] . ' ' . $exception->getMessage());
+        }
+        return redirect('magazines')->with('success', 'Успешно добавлен журнал: ' . $magazineDTO['title']);
     }
 
     /**
@@ -46,7 +57,7 @@ class MagazineController extends Controller
      */
     public function show(Magazine $magazine)
     {
-        //
+        echo __METHOD__;
     }
 
     /**
@@ -57,7 +68,7 @@ class MagazineController extends Controller
      */
     public function edit(Magazine $magazine)
     {
-        //
+        echo __METHOD__;
     }
 
     /**
@@ -69,7 +80,7 @@ class MagazineController extends Controller
      */
     public function update(Request $request, Magazine $magazine)
     {
-        //
+        echo __METHOD__;
     }
 
     /**
@@ -80,6 +91,6 @@ class MagazineController extends Controller
      */
     public function destroy(Magazine $magazine)
     {
-        //
+        echo __METHOD__;
     }
 }

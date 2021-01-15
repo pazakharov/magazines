@@ -1,5 +1,10 @@
 <?php
+
 namespace App\Repositories;
-class BaseRepository {
-    
+
+/**
+ * Репозиторий 
+ */
+class BaseRepository
+{
 }

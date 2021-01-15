@@ -6,7 +6,7 @@ use App\Models\Author;
 use Illuminate\Http\Request;
 use App\Repositories\AuthorRepository;
 use App\Http\Requests\AuthorCreateRequest;
-use App\Actions\Authors\AddNewAuthorAction;
+use App\Actions\Authors\CreateNewAuthorAction;
 
 class AuthorController extends Controller
 {
@@ -41,7 +41,7 @@ class AuthorController extends Controller
     public function store(AuthorCreateRequest $request)
     {
         $authorDTO = $request->except('_token');
-        AddNewAuthorAction::run($authorDTO);
+        CreateNewAuthorAction::run($authorDTO);
         return redirect('authors')->with('success', 'Успешно добавлен автор: ' . implode(' ', $authorDTO));
     }
 

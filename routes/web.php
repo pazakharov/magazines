@@ -16,3 +16,4 @@ use App\Http\Controllers\MagazineController;
 
 Route::get('/', [MagazineController::class, 'index']);
 Route::resource('authors', 'App\Http\Controllers\AuthorController')->name('index','authors');
+Route::resource('magazines', 'App\Http\Controllers\MagazineController');
