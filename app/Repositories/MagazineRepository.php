@@ -20,6 +20,6 @@ class MagazineRepository extends BaseRepository
      */
     public static function all(): Collection
     {
-        return Magazine::with(['authors'])->orderBy('created_at', 'desc')->get();
+        return Magazine::with(['authors','image'])->orderBy('created_at', 'desc')->get();
     }
 }

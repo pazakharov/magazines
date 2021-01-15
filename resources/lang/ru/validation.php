@@ -162,6 +162,8 @@ return [
     */
 
     'attributes' => [
+        'authors'               => 'Авторы',
+        'image'                =>  'Картинка', 
         'name'                  => 'Имя',
         'second_name'           => 'Фамилия',
         'middle_name'           => 'Отчество',

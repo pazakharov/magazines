@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 
-class MagazineCreateRequest extends FormRequest
+class ImageRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,11 +24,7 @@ class MagazineCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|max:255',
-            'date' => 'required|date_format:d.m.Y',
-            'authors' => 'required|array',
-            'image' => 'required',
-
+            'image' => 'image|max:2048'
         ];
     }
 }

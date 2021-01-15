@@ -8,7 +8,8 @@
     <title>@yield('title')</title>
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js" defer></script>
     @yield('css')
 </head>
@@ -39,22 +40,25 @@
     <div class="container">
         <div class="tr-container">
             <div class="tr-container-inner">
-                @if ($errors->any())
-                <div class="alert alert-danger">
-                    <strong>Ошибки!</strong> 
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
+                <div id="errors">
+                    @if ($errors->any())
+                        <div class="alert alert-danger" id="errors">
+                            <strong>Ошибки!</strong>
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    @if ($message = Session::get('success'))
+                        <div class="alert alert-success">
+                            <span>{{ Session::get('success') }} </span>
+                        </div>
+                    @endif
                 </div>
-            @endif
-            @if ($message = Session::get('success'))
-            <div class="alert alert-success">
-               <span>{{ Session::get('success') }} </span> 
-            </div>
-             @endif
-             @yield('content') 
+
+                @yield('content')
 
             </div>
         </div>

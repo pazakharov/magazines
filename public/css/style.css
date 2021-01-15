@@ -67,6 +67,7 @@ body {
         object-fit: cover;
         height: 300px;
 }
+
 .mag{
 
     margin: 10px;
@@ -75,5 +76,25 @@ body {
 .authors span{
    padding: 2px 10px;
    margin:3px;
-   display: inline-block;
+   display: block;
+}
+#authorList option:disabled {
+    display:none;
+}
+.bg-light{
+    background-color: #cdcfcf;
+}
+.author{
+    min-width: 200px;
+   
+}
+.img-wrap
+{
+width:250px;
+height: 350px;
+}
+
+.img-wrap img{
+ max-width: 100%;
+ height: auto;
 }

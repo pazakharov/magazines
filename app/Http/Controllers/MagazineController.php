@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Exception;
 use App\Models\Magazine;
 use Illuminate\Http\Request;
+use App\Repositories\AuthorRepository;
 use App\Repositories\MagazineRepository;
 use App\Http\Requests\MagazineCreateRequest;
 use App\Actions\Magazines\CreateNewMagazineAction;
@@ -19,6 +20,7 @@ class MagazineController extends Controller
     public function index()
     {
         $magazines = MagazineRepository::all();
+
         return view('magazines.magazines', compact('magazines'));
     }
 
@@ -29,7 +31,8 @@ class MagazineController extends Controller
      */
     public function create()
     {
-        return view('magazines.magazinesCreate');
+        $authors = AuthorRepository::all();
+        return view('magazines.magazinesCreate', compact('authors'));
     }
 
     /**
@@ -40,11 +43,12 @@ class MagazineController extends Controller
      */
     public function store(MagazineCreateRequest $request)
     {
-        $magazineDTO = $request->all();
+        $magazineDTO = $request->only(['title', 'date', 'description', 'authors', 'image']);
+
         try {
             CreateNewMagazineAction::run($magazineDTO);
         } catch (Exception $exception) {
-            return redirect('magazines')->with('success', 'Ошибки! добавления журнала' . $magazineDTO['title'] . ' ' . $exception->getMessage());
+            return redirect('magazines')->with('error', 'Ошибки! добавления журнала' . $magazineDTO['title'] . ' ' . $exception->getMessage());
         }
         return redirect('magazines')->with('success', 'Успешно добавлен журнал: ' . $magazineDTO['title']);
     }
@@ -91,6 +95,12 @@ class MagazineController extends Controller
      */
     public function destroy(Magazine $magazine)
     {
-        echo __METHOD__;
+        if (isset($magazine->image)) {
+            $magazine->image->delete();
+        }
+        $magazine->authors()->detach();
+        $magazine->delete();
+        return redirect()->route('magazines.index')
+            ->with('success', 'Журнал ' . $magazine->title . ' удален');
     }
 }

@@ -16,7 +16,7 @@ class AuthorRepository extends BaseRepository{
      * 
      * @return Collection
      */
-    public static function all(string $orderDir):Collection
+    public static function all(string $orderDir = 'asc'):Collection
     {
        return Author::orderBy('second_name', $orderDir)->get();
     }
