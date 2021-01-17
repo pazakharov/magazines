@@ -32,4 +32,15 @@ class MagazineCreateRequest extends FormRequest
 
         ];
     }
+
+     /**
+     * @return array
+     */
+    public function messages ()
+    {
+        return [
+            'image.required' => 'Требуется прикрепить картинку обложки журнала.',
+            'authors.required' => 'Требуется выбрать как минимум одного автора.',
+        ];
+    }
 }

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Repositories\AuthorRepository;
 use App\Repositories\MagazineRepository;
 use App\Http\Requests\MagazineCreateRequest;
+use App\Actions\Magazines\UpdateMagazineAction;
 use App\Actions\Magazines\CreateNewMagazineAction;
 
 class MagazineController extends Controller
@@ -72,7 +73,9 @@ class MagazineController extends Controller
      */
     public function edit(Magazine $magazine)
     {
-        echo __METHOD__;
+        $authors = AuthorRepository::all();
+        $magazine->load('authors', 'image');
+        return view('magazines.magazinesEdit', compact('magazine', 'authors'));
     }
 
     /**
@@ -82,9 +85,16 @@ class MagazineController extends Controller
      * @param  \App\Models\Magazine  $magazine
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Magazine $magazine)
+    public function update(MagazineCreateRequest $request, Magazine $magazine)
     {
-        echo __METHOD__;
+        $magazineDTO = $request->only(['title', 'date', 'description', 'authors', 'image']);
+        UpdateMagazineAction::run($magazine, $magazineDTO);
+        try {
+            
+        } catch (Exception $exception) {
+            return redirect('magazines')->with('error', 'Ошибки! обновления журнала' . $magazineDTO['title'] . ' ' . $exception->getMessage());
+        }
+        return redirect('magazines')->with('success', 'Успешно обновления журнал: ' . $magazineDTO['title']);
     }
 
     /**

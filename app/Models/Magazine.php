@@ -39,4 +39,15 @@ class Magazine extends Model
     {
         return $this->morphOne(Image::class, 'imageable');
     }
+
+    /**
+     * @param string $date
+     * 
+     * @return [type]
+     */
+    public function setDateAttribute (string $date)
+    {
+        $carbonDate = Carbon::parse($date);
+        $this->date = $carbonDate->timestamp;
+    }
 }

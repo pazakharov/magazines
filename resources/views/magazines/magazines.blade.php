@@ -15,14 +15,12 @@
                     </div>
                 </div>
                 <div class="card-body d-flex flex-row">
-
                     <div class="img-wrap">
-                    @if(isset($magazine->image->url))    
-                        <img class="cover" src="{{ $magazine->image->url }}" alt="">
-                    @endif    
+                        @if (isset($magazine->image->url))
+                            <img class="cover" src="{{ $magazine->image->url }}" alt="">
+                        @endif
                     </div>
                     <div class="desc mx-3">
-
                         <p class="card-text">{{ $magazine->description }} </p>
                         <div class="authors">
                             <h6>Авторы</h6>
@@ -33,7 +31,6 @@
                     </div>
                 </div>
                 <div class="buttons-group m-3 d-flex justify-content-end flex-row">
-
                     <a type="button" class="btn btn-outline-secondary mx-2"
                         href="{{ route('magazines.edit', ['magazine' => $magazine->id]) }}">
                         <i class="fa fa-pencil"></i>
@@ -49,6 +46,5 @@
                 </div>
             </div>
         @endforeach
-
     </div>
 @endsection
