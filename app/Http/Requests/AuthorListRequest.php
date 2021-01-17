@@ -13,7 +13,7 @@ class AuthorListRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,17 @@ class AuthorListRequest extends FormRequest
     public function rules()
     {
         return [
-            'orderDir' =>'in_array:asc,desc' 
+            'orderDir' =>'in:asc,desc' 
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function messages ()
+    {
+        return [
+            'orderDir.in' => 'Значение для сортировки выбрано неверное, попробуйте asc или desc'
         ];
     }
 }

@@ -53,6 +53,11 @@ class ImageRequest extends FormRequest
         ];
     }
 
+    /**
+     * @param Validator $validator
+     * 
+     * @return void
+     */
     protected function failedValidation(Validator $validator)
     {
         $errors = (new ValidationException($validator))->errors();

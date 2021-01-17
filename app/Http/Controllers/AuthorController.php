@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Author;
 use Illuminate\Http\Request;
 use App\Repositories\AuthorRepository;
+use App\Http\Requests\AuthorListRequest;
 use App\Http\Requests\AuthorCreateRequest;
 use App\Actions\Authors\CreateNewAuthorAction;
 
@@ -15,7 +16,7 @@ class AuthorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(AuthorListRequest $request)
     {
         $orderDir = $request->query('orderDir', 'asc');
         $authors = AuthorRepository::all($orderDir);
