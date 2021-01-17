@@ -45,11 +45,12 @@ class MagazineController extends Controller
     public function store(MagazineCreateRequest $request)
     {
         $magazineDTO = $request->only(['title', 'date', 'description', 'authors', 'image']);
-
+        CreateNewMagazineAction::run($magazineDTO);
         try {
-            CreateNewMagazineAction::run($magazineDTO);
+            
         } catch (Exception $exception) {
-            return redirect('magazines')->with('error', 'Ошибки! добавления журнала' . $magazineDTO['title'] . ' ' . $exception->getMessage());
+
+            return redirect('magazines')->withErrors('Внутренняя ошибка сохранения журнала');
         }
         return redirect('magazines')->with('success', 'Успешно добавлен журнал: ' . $magazineDTO['title']);
     }

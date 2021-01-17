@@ -19,8 +19,6 @@ class CreateNewMagazineAction
     public static function run(array $validatedMagazineData): bool
     {
         $magazine = new Magazine($validatedMagazineData);
-        $carbonDate = Carbon::parse($magazine->date);
-        $magazine->date = $carbonDate->timestamp;
         $magazine->save();
 
         if(isset($validatedMagazineData['authors']) && count($validatedMagazineData['authors']) > 0){

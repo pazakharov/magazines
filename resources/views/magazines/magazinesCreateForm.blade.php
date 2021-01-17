@@ -63,8 +63,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary">Отменить</button>
-                    <button type="button" class="btn btn-primary">Выбрать</button>
+                    <button type="button" class="btn btn-secondary">Закрыть</button>
+                    <button type="button" class="btn btn-primary">Добавить автора</button>
                 </div>
             </div>
         </div>

@@ -20,7 +20,7 @@ class Author extends Model
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function magazines(){
-        return $this->belongsToMany(Magazine::class);
+        return $this->belongsToMany(Magazine::class,'magazine_author');
     }
 
     public function getFullNameAttribute():string

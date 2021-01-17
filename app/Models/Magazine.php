@@ -48,6 +48,6 @@ class Magazine extends Model
     public function setDateAttribute (string $date)
     {
         $carbonDate = Carbon::parse($date);
-        $this->date = $carbonDate->timestamp;
+        $this->attributes['date'] = $carbonDate->timestamp;
     }
 }

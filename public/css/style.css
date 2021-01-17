@@ -3,6 +3,11 @@ body {
     background-position-y: -100px;
     background-position-x: center;
 }
+.del{
+    cursor: pointer;
+    background: rgb(155, 155, 155);
+    font-weight: bolder;
+}
 .form-wrapper{
     margin:10px 300px;
 }
@@ -13,7 +18,10 @@ body {
     height: 300px;
     object-fit: cover;
 }
-
+.modal{
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: display 10s;
+}
 .extend-modal {
     position: fixed;
     top: 0;
@@ -76,7 +84,7 @@ body {
 .authors span{
    padding: 2px 10px;
    margin:3px;
-   display: block;
+   display: inline-block;
 }
 #authorList option:disabled {
     display:none;
@@ -95,6 +103,6 @@ height: 350px;
 }
 
 .img-wrap img{
- max-width: 100%;
+ max-width: 250px;
  height: auto;
 }

@@ -78,8 +78,9 @@ class AuthorController extends Controller
      */
     public function destroy(Author $author)
     {
+        $author->magazines()->detach();
         $author->delete();
         return redirect()->route('authors')
-        ->with('success', 'Автор '.$author->fullName.' удален');
+        ->with('success', 'Автор "'.$author->fullName.'" удален и исключен из авторства всех журналов');
     }
 }

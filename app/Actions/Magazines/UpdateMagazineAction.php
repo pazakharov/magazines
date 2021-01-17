@@ -15,9 +15,13 @@ class UpdateMagazineAction
     public static function run(Magazine $magazine, array $validatedMagazineData)
     {
         $magazine->update($validatedMagazineData);
-        $image = Image::findOrFail($validatedMagazineData['image']);
-        $magazine->image()->save($image);
+        $magazine->load('image');
+        $magazine->image->imageable()->dissociate()->save();
+       
+        if(isset($validatedMagazineData['image'])){
+            $image = Image::findOrFail($validatedMagazineData['image']);
+            $magazine->image()->save($image);
+         }
         $magazine->authors()->sync($validatedMagazineData['authors']);
-        //dd($validatedMagazineData, $magazine);
     }
 }

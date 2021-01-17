@@ -24,14 +24,14 @@
         </thead>
         <tbody>
             @foreach ($authors as $author)
-                <tr x-data="{ open{{ $author->id }}: false }">
+                <tr>
                     <th scope="row">{{ $author->id }}</th>
                     <td>{{ $author->first_name }}</td>
                     <td>{{ $author->middle_name }}</td>
                     <td>{{ $author->second_name }}</td>
                     <td>
 
-                        <button type="button" class="btn btn-outline-success" @click="open{{ $author->id }} = true"><i
+                        <button type="button" class="btn btn-outline-success dialogeButton" author-data="{{ $author->id }}"><i
                                 class="fa fa-eye"> Журналы</i>
                         </button>
                         <a type="button" class="btn btn-outline-secondary"
@@ -46,28 +46,31 @@
                                 <i class="fa fa-trash-o"></i>
                             </button>
                         </form>
-                        <div x-show="open{{ $author->id }}" class="extend-modal">
+                        <div class="modal" id="modal{{ $author->id }}">
                             <div class="modal-dialog" role="document">
-                                <div class="modal-content" x-on:click.away="open{{ $author->id }} = false">
+                                <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title">Журналы Автора</h5>
-                                        <button @click="open{{ $author->id }} = false" type="button" class="close"
+                                        <h5 class="modal-title">Журналы автора "{{ $author->fullName }}"</h5>
+                                        <button  class = "closeDialoge close"  type="button" author-data="{{ $author->id }}"
                                             aria-label="Close">
                                             <span style="color:black">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <p>Журналы</p>
+                                        <ul>
+                                        @foreach($author->magazines as $magazine)
+                                        <li>Журнал {{$magazine->title}} от {{$magazine->humanDate}}</li>
+                                        @endforeach
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
-
-
                     </td>
-
                 </tr>
-
             @endforeach
         </tbody>
     </table>
+@endsection
+@section('js')
+<script type="text/JavaScript" src="{{ asset('js/authors.js') }}"></script>
 @endsection
