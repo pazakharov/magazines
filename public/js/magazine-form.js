@@ -1,17 +1,15 @@
 document.addEventListener('DOMContentLoaded', function () {
-    //============Инициализация формы=============
     for (let authorId of selectedAuthors) {
         addAuthorHtml(authorId)
     }
     setCoverSrcFromInput()
-    //=============================================    
+
     document.getElementById("imageFile").addEventListener('change', function () {
         try {
             getAjaxImage()
         } catch (error) {
             console.log('Ошибки Сети')
         }
-
     })
     document.getElementById("fotoСhooser").onclick = function () {
         document.getElementById("imageFile").click()
@@ -34,7 +32,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 : selectList[i].disabled = false
         }
     }
-
     function addAuthor() {
         let selected = document.getElementById('authorList')
         let authorId = selected.options[selected.selectedIndex].value
@@ -43,7 +40,6 @@ document.addEventListener('DOMContentLoaded', function () {
             addAuthorHtml(authorId)
         }
     }
-
     function addAuthorHtml(authorId) {
         let authors = document.getElementById('authors')
         let authorsInputs = document.getElementById('authorsInputs')
@@ -56,7 +52,6 @@ document.addEventListener('DOMContentLoaded', function () {
         updateAuthorList()
         addAddClickCloses()
     }
-
     function addAddClickCloses() {
         let buttons = document.querySelectorAll(".del")
         buttons.forEach(function (button) {
@@ -67,7 +62,6 @@ document.addEventListener('DOMContentLoaded', function () {
             })
         })
     }
-
     function removeAuthor(authorId) {
 
 
